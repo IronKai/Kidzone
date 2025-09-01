@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Fruit - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .game-area {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background: linear-gradient(to bottom, #87CEEB, #98D8C8);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .basket {
+            position: absolute;
+            bottom: 10px;
+            width: 80px;
+            height: 60px;
+            font-size: 50px;
+            text-align: center;
+            cursor: pointer;
+            transition: left 0.1s ease;
+        }
+        .fruit {
+            position: absolute;
+            font-size: 40px;
+            animation: fall linear;
+        }
+        @keyframes fall {
+            from { top: -50px; }
+            to { top: 450px; }
+        }
+        .score-popup {
+            position: absolute;
+            font-size: 30px;
+            font-weight: bold;
+            color: #2ecc71;
+            pointer-events: none;
+            animation: popup 1s ease-out;
+        }
+        @keyframes popup {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/motor.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Catch the Fruit 🍎</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Missed:</span>
+                <span id="missed">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Time:</span>
+                <span id="timer">60</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="game-area" id="gameArea">
+            <div class="basket" id="basket">🧺</div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="startFruitGame()">Start Game</button>
+        </div>
+    </main>
+
+    <script src="../../js/catch-fruit.js"></script>
+</body>
+</html>

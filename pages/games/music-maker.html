@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Maker - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .piano-container {
+            background: #2c3e50;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .piano-keys {
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+        }
+        .piano-key {
+            width: 60px;
+            height: 200px;
+            background: white;
+            border: 2px solid #34495e;
+            border-radius: 0 0 10px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 10px;
+            font-weight: bold;
+            transition: all 0.1s ease;
+            position: relative;
+        }
+        .piano-key:active, .piano-key.active {
+            background: linear-gradient(to bottom, #ecf0f1, #bdc3c7);
+            transform: translateY(2px);
+        }
+        .piano-key.black {
+            width: 40px;
+            height: 120px;
+            background: #2c3e50;
+            color: white;
+            margin: 0 -22px;
+            z-index: 1;
+        }
+        .piano-key.black:active, .piano-key.black.active {
+            background: #34495e;
+        }
+        .drum-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 150px);
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .drum-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 60px;
+            transition: all 0.1s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .drum-button:active {
+            transform: scale(0.95);
+        }
+        .drum-button.kick { background: #e74c3c; }
+        .drum-button.snare { background: #3498db; }
+        .drum-button.hihat { background: #f39c12; }
+        .drum-button.crash { background: #9b59b6; }
+        .drum-button.tom { background: #2ecc71; }
+        .drum-button.ride { background: #e67e22; }
+        
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .tempo-slider {
+            width: 300px;
+            margin: 20px 0;
+        }
+        .record-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .record-btn.recording {
+            background: #c0392b;
+            animation: recordPulse 1s ease infinite;
+        }
+        @keyframes recordPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/creativity.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Music Maker 🎵</h1>
+    </header>
+
+    <main class="game-container">
+        <div class="controls">
+            <button class="btn btn-primary" onclick="switchInstrument('piano')">🎹 Piano</button>
+            <button class="btn btn-primary" onclick="switchInstrument('drums')">🥁 Drums</button>
+            <button class="record-btn" id="recordBtn" onclick="toggleRecording()">⏺️ Record</button>
+            <button class="btn btn-primary" onclick="playRecording()">▶️ Play</button>
+        </div>
+        
+        <div id="pianoSection" class="piano-container">
+            <div class="piano-keys">
+                <div class="piano-key" data-note="C" onclick="playNote('C')">C</div>
+                <div class="piano-key black" data-note="C#" onclick="playNote('C#')"></div>
+                <div class="piano-key" data-note="D" onclick="playNote('D')">D</div>
+                <div class="piano-key black" data-note="D#" onclick="playNote('D#')"></div>
+                <div class="piano-key" data-note="E" onclick="playNote('E')">E</div>
+                <div class="piano-key" data-note="F" onclick="playNote('F')">F</div>
+                <div class="piano-key black" data-note="F#" onclick="playNote('F#')"></div>
+                <div class="piano-key" data-note="G" onclick="playNote('G')">G</div>
+                <div class="piano-key black" data-note="G#" onclick="playNote('G#')"></div>
+                <div class="piano-key" data-note="A" onclick="playNote('A')">A</div>
+                <div class="piano-key black" data-note="A#" onclick="playNote('A#')"></div>
+                <div class="piano-key" data-note="B" onclick="playNote('B')">B</div>
+            </div>
+        </div>
+        
+        <div id="drumsSection" class="drum-pad" style="display: none;">
+            <button class="drum-button kick" onclick="playDrum('kick')">🦵</button>
+            <button class="drum-button snare" onclick="playDrum('snare')">🥁</button>
+            <button class="drum-button hihat" onclick="playDrum('hihat')">🎩</button>
+            <button class="drum-button crash" onclick="playDrum('crash')">💥</button>
+            <button class="drum-button tom" onclick="playDrum('tom')">🪘</button>
+            <button class="drum-button ride" onclick="playDrum('ride')">🌊</button>
+        </div>
+    </main>
+
+    <script src="../../js/music-maker.js"></script>
+</body>
+</html>

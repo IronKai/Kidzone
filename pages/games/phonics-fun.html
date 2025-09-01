@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phonics Fun - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .phonics-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .sound-display {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .sound-bubble {
+            display: inline-block;
+            padding: 30px 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 4em;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: pulse 2s ease infinite;
+        }
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .word-card {
+            padding: 20px;
+            background: #f8f9fa;
+            border: 3px solid #dee2e6;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .word-card:hover {
+            transform: scale(1.05);
+            border-color: #667eea;
+        }
+        .word-card.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        .word-card.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+        .word-image {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        .word-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .blend-builder {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        .letter-slot {
+            width: 60px;
+            height: 60px;
+            border: 3px dashed #667eea;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            background: white;
+        }
+        .sound-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/language.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Phonics Fun 🔤</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Level:</span>
+                <span id="level">1</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="phonics-container">
+            <div class="sound-display">
+                <div class="sound-bubble" id="soundBubble">ch</div>
+            </div>
+            
+            <div class="sound-buttons">
+                <button class="btn btn-primary" onclick="playSound()">🔊 Hear Sound</button>
+                <button class="btn btn-primary" onclick="showHint()">💡 Hint</button>
+            </div>
+            
+            <p style="text-align: center; font-size: 1.3em; color: #666;">
+                Find all words that have this sound!
+            </p>
+            
+            <div class="word-grid" id="wordGrid"></div>
+            
+            <div class="blend-builder" id="blendBuilder" style="display: none;">
+                <div class="letter-slot" id="slot1"></div>
+                <div class="letter-slot" id="slot2"></div>
+                <div class="letter-slot" id="slot3"></div>
+                <div class="letter-slot" id="slot4"></div>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="nextPhonics()">Next Sound</button>
+        </div>
+    </main>
+
+    <script src="../../js/phonics-fun.js"></script>
+</body>
+</html>

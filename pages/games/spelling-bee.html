@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelling Bee - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .bee-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .bee-icon {
+            font-size: 100px;
+            animation: fly 3s ease-in-out infinite;
+        }
+        @keyframes fly {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .word-display {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .word-image {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border-radius: 20px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .letter-input {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        .letter-box {
+            width: 50px;
+            height: 50px;
+            font-size: 2em;
+            text-align: center;
+            border: 3px solid white;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+        }
+        .speak-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/language.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Spelling Bee 🐝</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Words:</span>
+                <span id="wordCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="bee-container">
+            <div class="bee-icon">🐝</div>
+        </div>
+        
+        <div class="word-display">
+            <div class="word-image" id="wordImage">🏠</div>
+            <button class="speak-btn" onclick="speakWord()">🔊 Hear Word</button>
+        </div>
+        
+        <div class="letter-input" id="letterInput"></div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="checkSpelling()">Check</button>
+            <button class="btn btn-primary" onclick="newWord()">New Word</button>
+            <button class="btn btn-primary" onclick="clearLetters()">Clear</button>
+        </div>
+    </main>
+
+    <script src="../../js/spelling-bee.js"></script>
+</body>
+</html>

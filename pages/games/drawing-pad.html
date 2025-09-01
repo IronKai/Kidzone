@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Pad - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        #canvas {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: crosshair;
+            display: block;
+            margin: 20px auto;
+        }
+        .drawing-tools {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .color-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .color-btn:hover, .color-btn.active {
+            transform: scale(1.2);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+        .brush-sizes {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .size-btn {
+            background: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .size-btn:hover, .size-btn.active {
+            transform: scale(1.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .tool-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/creativity.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Drawing Pad 🎨</h1>
+    </header>
+
+    <main class="game-container">
+        <canvas id="canvas" width="600" height="400"></canvas>
+        
+        <div class="drawing-tools">
+            <div class="color-palette">
+                <div class="color-btn active" style="background: black" onclick="setColor('black')"></div>
+                <div class="color-btn" style="background: red" onclick="setColor('red')"></div>
+                <div class="color-btn" style="background: blue" onclick="setColor('blue')"></div>
+                <div class="color-btn" style="background: green" onclick="setColor('green')"></div>
+                <div class="color-btn" style="background: yellow" onclick="setColor('yellow')"></div>
+                <div class="color-btn" style="background: orange" onclick="setColor('orange')"></div>
+                <div class="color-btn" style="background: purple" onclick="setColor('purple')"></div>
+                <div class="color-btn" style="background: pink" onclick="setColor('pink')"></div>
+                <div class="color-btn" style="background: brown" onclick="setColor('brown')"></div>
+                <div class="color-btn" style="background: white; border-color: #333" onclick="setColor('white')"></div>
+            </div>
+            
+            <div class="brush-sizes">
+                <button class="size-btn" style="width: 20px; height: 20px;" onclick="setBrushSize(2)"></button>
+                <button class="size-btn active" style="width: 30px; height: 30px;" onclick="setBrushSize(5)"></button>
+                <button class="size-btn" style="width: 40px; height: 40px;" onclick="setBrushSize(10)"></button>
+                <button class="size-btn" style="width: 50px; height: 50px;" onclick="setBrushSize(20)"></button>
+            </div>
+            
+            <div class="tool-buttons">
+                <button class="btn btn-primary" onclick="clearCanvas()">🗑️ Clear</button>
+                <button class="btn btn-primary" onclick="saveDrawing()">💾 Save</button>
+                <button class="btn btn-primary" onclick="fillBucket()">🪣 Fill</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../js/drawing-pad.js"></script>
+</body>
+</html>

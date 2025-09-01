@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Fun - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .counting-area {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            min-height: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .objects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .count-object {
+            font-size: 50px;
+            animation: bounceIn 0.5s ease;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .number-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .num-btn {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .num-btn:hover {
+            transform: scale(1.1);
+        }
+        .num-btn.correct {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            animation: correctPulse 0.5s ease;
+        }
+        .num-btn.wrong {
+            background: linear-gradient(135deg, #f44336, #da190b);
+            animation: shake 0.5s ease;
+        }
+        .question-text {
+            text-align: center;
+            font-size: 1.8em;
+            color: #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/math.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Counting Fun 🎲</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Streak:</span>
+                <span id="streak">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="counting-area">
+            <div class="question-text" id="question">How many do you see?</div>
+            <div class="objects-container" id="objectsContainer"></div>
+        </div>
+        
+        <div class="number-buttons" id="numberButtons"></div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="newCountingProblem()">New Problem</button>
+        </div>
+    </main>
+
+    <script src="../../js/counting-fun.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Quiz - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .animal-display {
+            text-align: center;
+            font-size: 150px;
+            margin: 20px 0;
+        }
+        .question {
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .answer-btn {
+            padding: 20px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .answer-btn:hover {
+            transform: scale(1.05);
+        }
+        .answer-btn.correct {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        .answer-btn.incorrect {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        .fact-box {
+            background: #f0f9ff;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+        .fact-box.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/knowledge.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Animal Quiz 🦁</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Streak:</span>
+                <span id="streak">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="quiz-container">
+            <div class="animal-display" id="animalDisplay">🦁</div>
+            <div class="question" id="question">What sound does this animal make?</div>
+            
+            <div class="answer-grid" id="answerGrid"></div>
+            
+            <div class="fact-box" id="factBox">
+                <h3>Fun Fact! 🌟</h3>
+                <p id="funFact"></p>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="nextQuestion()">Next Question</button>
+        </div>
+    </main>
+
+    <script src="../../js/animal-quiz.js"></script>
+</body>
+</html>

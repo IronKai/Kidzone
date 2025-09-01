@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot the Difference - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .pictures-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .picture-frame {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .picture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+        }
+        .grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .grid-item:hover {
+            transform: scale(1.1);
+            background: rgba(255,215,0,0.3);
+        }
+        .difference-found {
+            animation: foundPulse 0.5s ease;
+            background: #90EE90;
+        }
+        @keyframes foundPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        .hint-button {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #FFA500;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/cognitive.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Spot the Difference 👁️</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Found:</span>
+                <span id="found">0</span> / <span id="total">5</span>
+            </div>
+            <div class="stat">
+                <span class="label">Time:</span>
+                <span id="timer">0:00</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress" style="width: 0%">0%</div>
+        </div>
+        
+        <div class="pictures-container">
+            <div class="picture-frame">
+                <h3 style="text-align: center; color: #333;">Picture 1</h3>
+                <div class="picture-grid" id="picture1"></div>
+            </div>
+            
+            <div class="picture-frame">
+                <h3 style="text-align: center; color: #333;">Picture 2</h3>
+                <button class="hint-button" onclick="showHint()">💡</button>
+                <div class="picture-grid" id="picture2"></div>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="newPuzzle()">New Puzzle</button>
+        </div>
+    </main>
+
+    <script src="../../js/spot-difference.js"></script>
+</body>
+</html>

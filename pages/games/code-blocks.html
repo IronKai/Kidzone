@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Blocks - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .coding-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+        .code-area {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 400px;
+        }
+        .game-area {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+        }
+        .grid-world {
+            display: grid;
+            grid-template-columns: repeat(5, 60px);
+            grid-template-rows: repeat(5, 60px);
+            gap: 2px;
+            margin: 20px auto;
+            width: fit-content;
+        }
+        .grid-cell {
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        .grid-cell.wall {
+            background: #34495e;
+        }
+        .grid-cell.goal {
+            background: #f1c40f;
+        }
+        .robot {
+            font-size: 40px;
+            transition: all 0.5s ease;
+        }
+        .code-blocks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .code-block {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: move;
+            font-size: 1.2em;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .code-block:hover {
+            transform: scale(1.05);
+        }
+        .code-block.dragging {
+            opacity: 0.5;
+        }
+        .code-sequence {
+            min-height: 100px;
+            background: #34495e;
+            border: 2px dashed #95a5a6;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .code-sequence .code-block {
+            margin: 5px 0;
+        }
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .run-button {
+            background: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            flex: 1;
+        }
+        .run-button:hover {
+            background: #229954;
+        }
+        .level-info {
+            text-align: center;
+            color: #2c3e50;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/critical.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Code Blocks 💻</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Level:</span>
+                <span id="level">1</span>
+            </div>
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="coding-container">
+            <div class="code-area">
+                <h3 style="color: white; text-align: center;">Drag blocks here to code!</h3>
+                <div class="code-blocks" id="codeBlocks">
+                    <div class="code-block" draggable="true" data-action="move">Move Forward</div>
+                    <div class="code-block" draggable="true" data-action="turn-left">Turn Left</div>
+                    <div class="code-block" draggable="true" data-action="turn-right">Turn Right</div>
+                    <div class="code-block" draggable="true" data-action="jump" style="display: none;">Jump</div>
+                </div>
+                
+                <div class="code-sequence" id="codeSequence">
+                    <p style="color: #95a5a6; text-align: center;">Drop commands here...</p>
+                </div>
+                
+                <div class="control-buttons">
+                    <button class="run-button" onclick="runCode()">▶️ Run Code</button>
+                    <button class="run-button" style="background: #e74c3c;" onclick="resetCode()">🔄 Reset</button>
+                </div>
+            </div>
+            
+            <div class="game-area">
+                <div class="level-info" id="levelInfo">Help the robot reach the star!</div>
+                <div class="grid-world" id="gridWorld"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../js/code-blocks.js"></script>
+</body>
+</html>

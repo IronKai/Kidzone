@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Time - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .story-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .story-text {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+        }
+        .blank {
+            display: inline-block;
+            min-width: 100px;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-bottom: 3px dashed #667eea;
+            color: #667eea;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .blank:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        .blank.filled {
+            border-bottom: 3px solid #4CAF50;
+            color: #4CAF50;
+        }
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+        }
+        .word-chip {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        .word-chip:hover {
+            transform: scale(1.1);
+            background: #667eea;
+            color: white;
+        }
+        .word-chip.used {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .story-title {
+            text-align: center;
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/language.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Story Time 📚</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Stories:</span>
+                <span id="storyCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="story-container">
+            <h2 class="story-title" id="storyTitle">The Adventure</h2>
+            <div class="story-text" id="storyText"></div>
+            
+            <div class="word-bank" id="wordBank"></div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="checkStory()">Check Story</button>
+            <button class="btn btn-primary" onclick="newStory()">New Story</button>
+        </div>
+    </main>
+
+    <script src="../../js/story-time.js"></script>
+</body>
+</html>

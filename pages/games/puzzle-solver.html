@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Solver - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 120px);
+            gap: 5px;
+            margin: 40px auto;
+            width: fit-content;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+        }
+        .puzzle-piece {
+            width: 120px;
+            height: 120px;
+            border: 2px solid white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        .puzzle-piece:hover {
+            transform: scale(1.05);
+        }
+        .puzzle-piece.empty {
+            background: transparent;
+            border: 2px dashed white;
+            cursor: default;
+        }
+        .moves-display {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/cognitive.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Puzzle Solver 🧩</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Moves:</span>
+                <span id="moves">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Best:</span>
+                <span id="best">-</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="moves-display">Arrange numbers 1-8 in order!</div>
+        
+        <div class="puzzle-container" id="puzzleContainer"></div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="initPuzzle()">New Puzzle</button>
+            <button class="btn btn-primary" onclick="showSolution()">Show Solution</button>
+        </div>
+    </main>
+
+    <script src="../../js/puzzle-solver.js"></script>
+</body>
+</html>

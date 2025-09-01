@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Sequence - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 150px);
+            gap: 20px;
+            margin: 40px auto;
+            width: fit-content;
+        }
+        .pattern-button {
+            width: 150px;
+            height: 150px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 3em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .pattern-button.red { background: #ff6b6b; }
+        .pattern-button.blue { background: #4dabf7; }
+        .pattern-button.green { background: #51cf66; }
+        .pattern-button.yellow { background: #ffd43b; }
+        .pattern-button.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255,255,255,0.8);
+        }
+        .pattern-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .sequence-display {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            margin: 20px 0;
+            min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/cognitive.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Pattern Sequence 🔄</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Level:</span>
+                <span id="level">1</span>
+            </div>
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="sequence-display" id="message">Watch the pattern!</div>
+        
+        <div class="pattern-grid">
+            <button class="pattern-button red" data-color="red" onclick="playerClick('red')">🔴</button>
+            <button class="pattern-button blue" data-color="blue" onclick="playerClick('blue')">🔵</button>
+            <button class="pattern-button green" data-color="green" onclick="playerClick('green')">🟢</button>
+            <button class="pattern-button yellow" data-color="yellow" onclick="playerClick('yellow')">🟡</button>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="startPattern()">Start Game</button>
+        </div>
+    </main>
+
+    <script src="../../js/pattern-sequence.js"></script>
+</body>
+</html>

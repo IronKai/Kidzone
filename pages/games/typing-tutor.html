@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Tutor - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .typing-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .text-display {
+            font-size: 2em;
+            line-height: 1.8;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            font-family: 'Courier New', monospace;
+        }
+        .char {
+            display: inline;
+            padding: 2px;
+            margin: 1px;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+        }
+        .char.current {
+            background: #ffd43b;
+            animation: blink 1s ease infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .char.correct {
+            background: #51cf66;
+            color: white;
+        }
+        .char.incorrect {
+            background: #ff6b6b;
+            color: white;
+        }
+        .keyboard-visual {
+            background: #2c3e50;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin: 5px 0;
+        }
+        .key {
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            color: white;
+            border: 2px solid #2c3e50;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.1s ease;
+        }
+        .key.space {
+            width: 200px;
+        }
+        .key.active {
+            background: #3498db;
+            transform: scale(0.95);
+        }
+        .key.target {
+            background: #f39c12;
+            animation: pulse 1s ease infinite;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/motor.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Typing Tutor ⌨️</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Level:</span>
+                <span id="level">1</span>
+            </div>
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="typing-container">
+            <div class="text-display" id="textDisplay"></div>
+            
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-value" id="wpm">0</div>
+                    <div class="stat-label">WPM</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="accuracy">100%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="timer">0:00</div>
+                    <div class="stat-label">Time</div>
+                </div>
+            </div>
+            
+            <div class="keyboard-visual">
+                <div class="keyboard-row">
+                    <div class="key" data-key="q">Q</div>
+                    <div class="key" data-key="w">W</div>
+                    <div class="key" data-key="e">E</div>
+                    <div class="key" data-key="r">R</div>
+                    <div class="key" data-key="t">T</div>
+                    <div class="key" data-key="y">Y</div>
+                    <div class="key" data-key="u">U</div>
+                    <div class="key" data-key="i">I</div>
+                    <div class="key" data-key="o">O</div>
+                    <div class="key" data-key="p">P</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key" data-key="a">A</div>
+                    <div class="key" data-key="s">S</div>
+                    <div class="key" data-key="d">D</div>
+                    <div class="key" data-key="f">F</div>
+                    <div class="key" data-key="g">G</div>
+                    <div class="key" data-key="h">H</div>
+                    <div class="key" data-key="j">J</div>
+                    <div class="key" data-key="k">K</div>
+                    <div class="key" data-key="l">L</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key" data-key="z">Z</div>
+                    <div class="key" data-key="x">X</div>
+                    <div class="key" data-key="c">C</div>
+                    <div class="key" data-key="v">V</div>
+                    <div class="key" data-key="b">B</div>
+                    <div class="key" data-key="n">N</div>
+                    <div class="key" data-key="m">M</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key space" data-key=" ">SPACE</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="startTyping()">Start Typing</button>
+            <button class="btn btn-primary" onclick="nextLesson()">Next Lesson</button>
+        </div>
+    </main>
+
+    <script src="../../js/typing-tutor.js"></script>
+</body>
+</html>

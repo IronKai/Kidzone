@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography Explorer - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .map-container {
+            background: #87CEEB;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .world-map {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .continent {
+            background: #90EE90;
+            border: 3px solid #228B22;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .continent:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .continent.selected {
+            background: #FFD700;
+            border-color: #FFA500;
+        }
+        .continent-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .continent-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .question-area {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .question {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .flag-display {
+            font-size: 100px;
+            margin: 20px 0;
+        }
+        .country-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .country-btn {
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .country-btn:hover {
+            transform: scale(1.05);
+        }
+        .country-btn.correct {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        .country-btn.wrong {
+            background: linear-gradient(135deg, #f44336, #da190b);
+        }
+        .explorer-info {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+        }
+        .info-title {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/knowledge.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Geography Explorer 🌍</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Countries Found:</span>
+                <span id="countries">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="map-container">
+            <div class="world-map" id="worldMap">
+                <div class="continent" data-continent="africa" onclick="selectContinent('africa')">
+                    <div class="continent-icon">🦁</div>
+                    <div class="continent-name">Africa</div>
+                </div>
+                <div class="continent" data-continent="asia" onclick="selectContinent('asia')">
+                    <div class="continent-icon">🐼</div>
+                    <div class="continent-name">Asia</div>
+                </div>
+                <div class="continent" data-continent="europe" onclick="selectContinent('europe')">
+                    <div class="continent-icon">🏰</div>
+                    <div class="continent-name">Europe</div>
+                </div>
+                <div class="continent" data-continent="northamerica" onclick="selectContinent('northamerica')">
+                    <div class="continent-icon">🗽</div>
+                    <div class="continent-name">North America</div>
+                </div>
+                <div class="continent" data-continent="southamerica" onclick="selectContinent('southamerica')">
+                    <div class="continent-icon">🦜</div>
+                    <div class="continent-name">South America</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="question-area">
+            <div class="question" id="question">Select a continent to explore!</div>
+            <div class="flag-display" id="flagDisplay">🌏</div>
+            <div class="country-options" id="countryOptions"></div>
+            
+            <div class="explorer-info">
+                <div class="info-card">
+                    <div class="info-title">Capital</div>
+                    <div class="info-value" id="capital">-</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-title">Language</div>
+                    <div class="info-value" id="language">-</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-title">Fun Fact</div>
+                    <div class="info-value" id="funFact">-</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="nextCountry()">Next Country</button>
+        </div>
+    </main>
+
+    <script src="../../js/geography-explorer.js"></script>
+</body>
+</html>

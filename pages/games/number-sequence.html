@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Sequence - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .sequence-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 40px auto;
+            flex-wrap: wrap;
+        }
+        .number-box {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .number-box.missing {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            border: 3px dashed white;
+        }
+        .number-box.missing:hover {
+            transform: scale(1.1);
+        }
+        .options-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+        .option-btn {
+            width: 70px;
+            height: 70px;
+            font-size: 1.8em;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .option-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+        .hint-text {
+            text-align: center;
+            color: white;
+            font-size: 1.3em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/math.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Number Sequence 🔢</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Streak:</span>
+                <span id="streak">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="hint-text" id="hint">Find the missing number!</div>
+        
+        <div class="sequence-container" id="sequenceContainer"></div>
+        
+        <div class="options-container" id="optionsContainer"></div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="generateSequence()">New Sequence</button>
+        </div>
+    </main>
+
+    <script src="../../js/number-sequence.js"></script>
+</body>
+</html>

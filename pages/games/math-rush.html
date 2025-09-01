@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Rush - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .math-problem {
+            font-size: 4em;
+            color: white;
+            text-align: center;
+            margin: 40px 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        .answer-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .answer-btn {
+            padding: 30px;
+            font-size: 2em;
+            background: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .answer-btn:hover {
+            transform: scale(1.1);
+        }
+        .answer-btn.correct {
+            background: #55efc4;
+            animation: correctPulse 0.5s ease;
+        }
+        .answer-btn.wrong {
+            background: #ff7675;
+            animation: shake 0.5s ease;
+        }
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .score-display {
+            font-size: 1.5em;
+            color: white;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/math.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Math Rush ➕➖✖️➗</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Level:</span>
+                <span id="level">1</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="math-problem" id="problem">
+            Click Start to Begin!
+        </div>
+        
+        <div class="answer-buttons" id="answers">
+            <button class="answer-btn" onclick="checkAnswer(0)">?</button>
+            <button class="answer-btn" onclick="checkAnswer(1)">?</button>
+            <button class="answer-btn" onclick="checkAnswer(2)">?</button>
+            <button class="answer-btn" onclick="checkAnswer(3)">?</button>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="startMathGame()">Start Game</button>
+        </div>
+    </main>
+
+    <script src="../../js/math-rush.js"></script>
+</body>
+</html>

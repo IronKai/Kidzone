@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Mix - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .mixing-area {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .color-drop {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .color-drop:hover {
+            transform: scale(1.1);
+        }
+        .color-drop.selected {
+            transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(0,0,0,0.4);
+        }
+        .mixing-bowl {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: inset 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        .result-display {
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+            margin: 20px 0;
+        }
+        .challenge-box {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .challenge-target {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 10px auto;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/creativity.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Color Mix 🎭</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Mixed:</span>
+                <span id="mixCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="mixing-area">
+            <div class="challenge-box">
+                <h3>Can you make this color?</h3>
+                <div class="challenge-target" id="targetColor"></div>
+                <p id="targetName">Purple</p>
+            </div>
+            
+            <div class="color-palette">
+                <div class="color-drop" style="background: #FF0000" onclick="selectColor('red', '#FF0000')">Red</div>
+                <div class="color-drop" style="background: #0000FF" onclick="selectColor('blue', '#0000FF')">Blue</div>
+                <div class="color-drop" style="background: #FFFF00" onclick="selectColor('yellow', '#FFFF00')">Yellow</div>
+            </div>
+            
+            <div class="mixing-bowl" id="mixingBowl">🎨</div>
+            
+            <div class="result-display" id="result">Select two colors to mix!</div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="mixColors()">Mix Colors!</button>
+            <button class="btn btn-primary" onclick="resetMix()">Clear Bowl</button>
+            <button class="btn btn-primary" onclick="newChallenge()">New Challenge</button>
+        </div>
+    </main>
+
+    <script src="../../js/color-mix.js"></script>
+</body>
+</html>

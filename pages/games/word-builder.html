@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Builder - KidZone</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/game.css">
+    <style>
+        .word-display {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .word-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .letter-slots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            min-height: 80px;
+        }
+        .letter-slot {
+            width: 60px;
+            height: 60px;
+            border: 3px dashed white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+        .letter-slot.filled {
+            background: white;
+            color: #333;
+            border-style: solid;
+        }
+        .letter-bank {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .letter-tile {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .letter-tile:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .letter-tile.used {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <a href="../categories/language.html" class="btn btn-back">← Back to Games</a>
+    
+    <header class="game-header">
+        <h1>Word Builder 🔤</h1>
+        <div class="game-stats">
+            <div class="stat">
+                <span class="label">Words:</span>
+                <span id="wordCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="label">Score:</span>
+                <span id="score">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <div class="word-display">
+            <div class="word-image" id="wordImage">🐱</div>
+            <p style="color: white; font-size: 1.5em; margin-top: 20px;">Build the word!</p>
+        </div>
+        
+        <div class="letter-slots" id="letterSlots"></div>
+        
+        <div class="letter-bank" id="letterBank"></div>
+        
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="startWordGame()">New Word</button>
+            <button class="btn btn-primary" onclick="checkWord()">Check</button>
+            <button class="btn btn-primary" onclick="resetWord()">Reset</button>
+        </div>
+    </main>
+
+    <script src="../../js/word-builder.js"></script>
+</body>
+</html>

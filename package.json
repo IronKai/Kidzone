@@ -1,0 +1,22 @@
+{
+  "name": "kidzone-learning",
+  "version": "1.0.0",
+  "description": "Interactive educational website for kids aged 4-12",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "live-server"
+  },
+  "keywords": [
+    "kids",
+    "education",
+    "learning",
+    "games",
+    "interactive"
+  ],
+  "author": "KidZone Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
